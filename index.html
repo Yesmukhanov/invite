@@ -36,6 +36,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             text-align: center;
             max-width: 600px;
+            width: 90%;
             position: relative;
             z-index: 1;
             backdrop-filter: blur(10px);
@@ -113,10 +114,27 @@
             background: linear-gradient(90deg, transparent, #ff3f6d, transparent);
             margin: 25px 0;
         }
+
+        /* Адаптивные стили для мобильных устройств */
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 20px 30px;
+            }
+            h1 {
+                font-size: 32px;
+            }
+            p {
+                font-size: 16px;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
-<!-- Floating hearts background -->
+<!-- Плавающие сердечки на фоне -->
 <div class="heart" style="top:10%; left:15%; width:20px; height:20px;"></div>
 <div class="heart" style="top:70%; left:80%; width:25px; height:25px; animation-delay:-2s"></div>
 <div class="heart" style="top:30%; left:90%; width:15px; height:15px; animation-delay:-4s"></div>
