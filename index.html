@@ -353,6 +353,12 @@
       border-color: #a9897b;
       background: #fcf9f8;
     }
+    .radio-group .divider {
+      border: none;              /* выключаем стандартные рамки */
+      border-top: 1px solid #fff; /* делаем тонкую белую линию */
+      margin: 8px 0;             /* отступы сверху/снизу */
+    }
+
 
     .info-text {
       font-family: 'Montserrat', sans-serif;
@@ -381,6 +387,9 @@
       margin-bottom: 8px;
     }
 
+    hr {
+      color: white;
+    }
     .radio-group input[type="radio"] {
       accent-color: #742820;
       width: 18px;                /* slightly smaller circles */
@@ -426,6 +435,13 @@
         font-size: 1.2em;
         padding: 10px 0;
       }
+
+      .radio-group .divider {
+        border: none;              /* выключаем стандартные рамки */
+        border-top: 1px solid #fff; /* делаем тонкую белую линию */
+        margin: 8px 0;             /* отступы сверху/снизу */
+      }
+
     }
 
   </style>
@@ -459,7 +475,30 @@
     <div class="mini-calendar-container">
       <div class="mini-calendar-header">Тамыз 2025</div>
       <table class="mini-calendar">
-        <!-- … -->
+        <thead>
+        <tr>
+          <th>ДС</th><th>СС</th><th>СР</th><th>БС</th><th>ЖМ</th><th>СБ</th><th>ЖС</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td>
+        </tr>
+        <tr>
+          <td>4</td><td>5</td><td>6</td>
+          <td class="marked-day">7</td>
+          <td>8</td><td>9</td><td>10</td>
+        </tr>
+        <tr>
+          <td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td>
+        </tr>
+        <tr>
+          <td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td>
+        </tr>
+        <tr>
+          <td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td>
+        </tr>
+        </tbody>
       </table>
     </div>
 
@@ -506,11 +545,33 @@
       <div class="info-text" style="text-align:left">
         Жұбыңызбен келсеңіз, жұбыңыздың есімін де жазыңыз!
       </div>
-      <div class="radio-group" style="text-align:left">
-        <label><input type="radio" name="answer" value="Келемін" style="font-size: 0.2em" required/> Келемін</label>
-        <label><input type="radio" name="answer" value="Жұбыммен келемін"/> Жұбыммен келемін</label>
-        <label><input type="radio" name="answer" value="Келе алмаймын"/> Келе алмаймын</label>
+      <div class="radio-group">
+        <div>
+          <label>
+            <input type="radio" name="answer" value="Келемін" required>
+            Келемін
+          </label>
+        </div>
+
+        <hr class="divider" />
+
+        <div>
+          <label>
+            <input type="radio" name="answer" value="Жұбыммен келемін">
+            Жұбыммен келемін
+          </label>
+        </div>
+
+        <hr class="divider" />
+
+        <div>
+          <label>
+            <input type="radio" name="answer" value="Келе алмаймын">
+            Келе алмаймын
+          </label>
+        </div>
       </div>
+
       <button type="submit">Жіберу</button>
     </form>
   </div>
