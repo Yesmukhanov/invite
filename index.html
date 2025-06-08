@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мерейдің қыз ұзатуы</title>
+  <!-- Playfair Display (основной), Caveat (каллиграфия) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Playfair Display', serif;
+      background: #fff;
+      color: #111;
+      min-height: 100%;
+    }
+    body {
+      min-height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
+
+      background-color: #fff;
+
+      /* орнамент слева и справа, фиксированный */
+      background-image:
+              url('img.png'),
+              url('img_1.png');
+      background-repeat: no-repeat, no-repeat;
+      background-position: left center, right center;
+      background-size: contain, contain;
+      background-attachment: fixed, fixed;
+    }
+
+    /* Обложка */
+    .hero {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero img.bg-photo {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      object-position: center;
+      position: absolute;
+      top: 0; left: 0;
+      z-index: 1;
+      filter: brightness(0.98);
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: linear-gradient(
+              to bottom,
+              rgba(255,255,255,0.33) 8%,
+              rgba(255,255,255,0.97) 88%
+      );
+      z-index: 2;
+    }
+    .music-button {
+      position: absolute;
+      bottom: 62px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 72px; height: 72px;
+      background: rgba(255,255,255,0.93);
+      border-radius: 50%;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 33px; color: #b29a90; cursor: pointer;
+      z-index: 10; border: none;
+      transition: all 0.3s ease;
+    }
+    .music-button:hover {
+      background: #efe1fa;
+      transform: translateX(-50%) scale(1.05);
+    }
+
+    /* Основная часть */
+    .main-bg {
+      min-height: 100vh;
+      padding-top: 56px;
+      position: relative;
+      background: #fff;
+    }
+    .content-section {
+      /* немного расширим отступы по бокам */
+      padding: 62px 48px;
+      /* выравниваем всё по центру */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      /* остальные ваши стили */
+      max-width: 650px;
+      margin: 0 auto 56px;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      background: #fff;
+      z-index: 2;
+    }
+
+    /* для всех прямых детей .content-section ограничиваем ширину */
+    .content-section > * {
+      max-width: 580px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* если нужно ещё уже, уменьшите 580px до 540px или больше padding */
+
+
+    /* Caveat акцент */
+    .caveat {
+      font-family: 'Caveat', cursive !important;
+      font-weight: 400 !important;
+      color: #a9897b !important;
+      letter-spacing: 0.5px;
+    }
+    .caveat.host     { font-size: 1.5em; margin-top: 7px; }
+    .caveat.date     { font-size: 1.4em; margin: 8px 0 4px 0; }
+    .caveat.place    { font-size: 1.2em; }
+    .caveat.section-title { font-size: 1.15em; margin: 18px 0 7px 0; }
+
+    .noto-italic {
+      font-family: 'Noto Serif', serif !important;
+      font-style: italic !important;
+      font-weight: 400 !important;
+      color: #b29a90 !important;
+      font-size: 2.1em;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+      display: block;
+      opacity: 0.97;
+      margin: 8px 0 14px 0;
+    }
+    .noto-italic.place {
+      font-size: 2.5em;
+      letter-spacing: 0.06em;
+      margin: 0 0 8px 0;
+    }
+    .noto-italic.date {
+      font-size: 2.5em;
+      margin: 10px 0 18px 0;
+    }
+    .noto-italic.thin {
+      font-size: 1.25em;
+      opacity: 0.93;
+      margin: 6px 0 6px 0;
+    }
+    .noto-italic.section-title {
+      font-size: 2.0em;
+      margin: 18px 0 7px 0;
+    }
+
+    /* Мини-календарь */
+    .mini-calendar-container {
+      max-width: 340px;
+      margin: 0 auto 18px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .mini-calendar-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #b49a89;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    .mini-calendar {
+      font-size: 20px;
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+      background: transparent;
+    }
+    .mini-calendar th,
+    .mini-calendar td {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      color: #222;
+      padding: 3px 8px;
+      text-align: center;
+      border: none;
+      font-size: 1em;
+      background: transparent;
+      position: relative;
+      line-height: 1.05;
+    }
+    .mini-calendar .marked-day {
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+    }
+    .mini-calendar .marked-day::after {
+      content: "♡";
+      font-family: 'Playfair Display', serif;
+      font-size: 2em;
+      color: #b49a89;
+      position: absolute;
+      left: 50%;
+      top: 55%;
+      transform: translate(-50%, -50%);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Outlined-text — для второстепенных блоков */
+    .outlined-text {
+      font-family: 'Playfair Display', serif !important;
+      font-weight: 700 !important;
+      color: #b49a89 !important;
+      -webkit-text-stroke: 0.6px #998678 !important;
+      text-stroke: 0.6px #998678 !important;
+      letter-spacing: 0.2px;
+    }
+    .outlined-text.section { font-size: 26px !important; }
+    .outlined-text.title   { font-size: 34px !important; }
+    .outlined-text.address { font-size: 22px !important; }
+    .outlined-text.schedule{ font-size: 19px !important; }
+    .outlined-text.date, .outlined-text.time { font-size: 28px !important; }
+    .outlined-text.small  { font-size: 18px !important; }
+
+    /* Кнопки и формы */
+    .rsvp-form {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 4px 18px rgba(115, 62, 49, 0.05);
+      max-width: 510px;
+      margin: 24px auto;
+      padding: 32px 24px 36px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 19px;
+      align-items: stretch;
+    }
+
+    .rsvp-form input[type="text"] {
+      width: 100%;
+      padding: 20px 18px;
+      font-size: 1.38em;
+      border-radius: 20px;
+      border: 3px solid #c6beb9;
+      outline: none;
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      color: #432017;
+      background: #fff;
+      box-sizing: border-box;
+      transition: border-color 0.22s;
+      margin-bottom: 0;
+    }
+    .rsvp-form input[type="text"]:focus {
+      border-color: #a9897b;
+      background: #fcf9f8;
+    }
+
+    .info-text {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 600;
+      font-size: 1em;
+      color: #742820;
+      text-align: center;
+      margin: 8px 0 14px 0;
+      letter-spacing: 0.01em;
+    }
+
+    .radio-group {
+      margin: 0 0 14px 0;
+    }
+    .radio-group label {
+      font-size: 1.26em;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #742820;
+      margin-left: 8px;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    .radio-group div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .radio-group input[type="radio"] {
+      accent-color: #742820;
+      width: 22px;
+      height: 22px;
+      margin: 0 10px 0 0;
+    }
+
+    .rsvp-form button[type='submit'] {
+      background-color: #a9897b;
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.6em;
+      border: none;
+      border-radius: 22px;
+      padding: 15px 0;
+      margin-top: 18px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 10px rgba(115, 62, 49, 0.09);
+      transition: background 0.18s;
+      width: 100%;
+    }
+    .rsvp-form button[type='submit']:hover {
+      background: #7d5b4b;
+    }
+
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #b29a90;
+      transition: opacity 0.3s ease;
+    }
+    .map-link:hover {
+      opacity: 0.8;
+    }
+    .map-link img {
+      border-radius: 10px;
+    }
+
+    /* MOBILE RESPONSIVE STYLES */
+    @media (max-width: 768px) {
+      .hero {
+        height: 100vh;
+        min-height: 600px;
+      }
+
+      .music-button {
+        bottom: 40px;
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+      }
+
+      .main-bg {
+        padding-top: 20px;
+      }
+
+      .content-section {
+        /* replace your current background shorthand with these split properties: */
+        background-image: url('Kuz-Uzatu-2.JPG');
+        background-repeat: no-repeat;
+        background-position: right center;       /* or “bottom center” if you prefer */
+        background-size: contain;               /* or whatever sizing you want */
+        background-attachment: fixed;            /* ← this makes it stay put on scroll */
+
+        /* the rest of your existing styles… */
+        max-width: 650px;
+        margin: 0 auto;
+        border-radius: 16px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        padding: 62px 32px;
+        margin-bottom: 56px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+        position: relative;
+        z-index: 2;
+      }
+
+
+      /* Text scaling for mobile */
+      .outlined-text.title   { font-size: 28px !important; line-height: 1.2; }
+      .outlined-text.section {
+        font-size: 20px !important;
+        line-height: 1.3;
+        margin-bottom: 12px;
+      }
+      .outlined-text.address {
+        font-size: 16px !important;
+        line-height: 1.4;
+      }
+      .outlined-text.schedule{
+        font-size: 15px !important;
+        padding: 15px !important;
+        line-height: 1.3;
+      }
+      .outlined-text.date, .outlined-text.time { font-size: 22px !important; }
+      .outlined-text.small  {
+        font-size: 14px !important;
+        line-height: 1.4;
+        margin: 16px 0 8px 0;
+      }
+
+      /* Noto italic text scaling */
+      .noto-italic {
+        font-size: 1.6em !important;
+        line-height: 1.3;
+        margin: 6px 0 10px 0;
+      }
+      .noto-italic.place {
+        font-size: 1.8em !important;
+        margin: 0 0 6px 0;
+      }
+      .noto-italic.date {
+        font-size: 1.8em !important;
+        margin: 8px 0 12px 0;
+      }
+      .noto-italic.section-title {
+        font-size: 1.5em !important;
+        margin: 12px 0 6px 0;
+      }
+
+      /* Calendar adjustments */
+      .mini-calendar-container {
+        max-width: 280px;
+        margin: 0 auto 12px auto;
+      }
+      .mini-calendar-header {
+        font-size: 16px;
+        margin-bottom: 4px;
+      }
+      .mini-calendar {
+        font-size: 14px;
+      }
+      .mini-calendar th,
+      .mini-calendar td {
+        padding: 2px 6px;
+        font-size: 14px;
+      }
+      .mini-calendar .marked-day::after {
+        font-size: 1.5em;
+      }
+
+      /* Form adjustments */
+      .rsvp-form {
+        margin: 16px auto;
+        padding: 24px 16px 28px 16px;
+        border-radius: 20px;
+        gap: 16px;
+        max-width: 90%;
+      }
+
+      .rsvp-form input[type="text"] {
+        padding: 16px 14px;
+        font-size: 1.1em;
+        border-radius: 16px;
+        border-width: 2px;
+      }
+
+      .info-text {
+        font-size: 0.9em;
+        margin: 6px 0 10px 0;
+        text-align: left;
+      }
+
+      .radio-group label {
+        font-size: 1.1em;
+        margin-left: 6px;
+      }
+      .radio-group input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        margin: 0 8px 0 0;
+      }
+      .radio-group div {
+        margin-bottom: 8px;
+      }
+
+      .rsvp-form button[type='submit'] {
+        font-size: 1.3em;
+        padding: 12px 0;
+        margin-top: 12px;
+        border-radius: 18px;
+      }
+
+      /* Map link adjustments */
+      .map-link {
+        gap: 8px;
+        flex-direction: column;
+        text-align: center;
+      }
+      .map-link img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    /* Extra small mobile devices */
+    @media (max-width: 480px) {
+      .content-section {
+        padding: 6vw 3vw 6vw 3vw;
+        margin: 0 1vw 15px 1vw;
+        gap: 20px;
+      }
+
+      .outlined-text.title   { font-size: 24px !important; }
+      .outlined-text.section { font-size: 18px !important; }
+      .outlined-text.address { font-size: 14px !important; }
+      .outlined-text.schedule{ font-size: 13px !important; padding: 12px !important; }
+      .outlined-text.date, .outlined-text.time { font-size: 20px !important; }
+      .outlined-text.small  { font-size: 13px !important; }
+
+      .noto-italic { font-size: 1.4em !important; }
+      .noto-italic.place, .noto-italic.date { font-size: 1.6em !important; }
+      .noto-italic.section-title { font-size: 1.3em !important; }
+
+      .mini-calendar-container { max-width: 250px; }
+      .mini-calendar-header { font-size: 14px; }
+      .mini-calendar { font-size: 12px; }
+      .mini-calendar th, .mini-calendar td {
+        padding: 1px 4px;
+        font-size: 12px;
+      }
+
+      .rsvp-form {
+        padding: 20px 12px 24px 12px;
+      }
+      .rsvp-form input[type="text"] {
+        padding: 14px 12px;
+        font-size: 1em;
+      }
+      .info-text { font-size: 0.8em; }
+      .radio-group label { font-size: 1em; }
+      .rsvp-form button[type='submit'] { font-size: 1.2em; }
+    }
+
+    /* Landscape mobile adjustments */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .hero {
+        height: 100vh;
+      }
+      .music-button {
+        bottom: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+      }
+      .content-section {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- 1. Обложка -->
+<div class="hero">
+  <img src="Kuz-Uzatu-1.JPG" alt="Мерей" class="bg-photo" />
+  <div class="hero-overlay"></div>
+  <button class="music-button" id="playBtn" title="Музыка">
+    <span id="playIcon">&#9654;</span>
+  </button>
+  <audio id="music" src="Kuz-Uzatu-music.mp3" preload="auto" loop></audio>
+</div>
+
+<!-- 2. Основной блок -->
+<div class="main-bg">
+  <div class="content-section" >
+    <div class="outlined-text title">Құрметті</div>
+    <div class="outlined-text section">
+      ағайын - туыс, бауырлар,<br />
+      құда - жекжат, нағашы-жиен, әріптестер,<br />
+      дос - жарандар және көршілер! <br />
+      сіздерді қызымыз<br />
+      <span class="noto-italic" style="font-size:1.2em;">Мерейдің</span> <br />
+      ұзату тойының<br />
+      қадірлі қонағы болуға шақырамыз!
+    </div>
+    <div class="outlined-text section">Той иелері:</div>
+    <div class="noto-italic">Қуаныш - Анжелика</div>
+    <div class="outlined-text section">Той салтанаты:</div>
+    <div class="noto-italic date">7 тамыз 2025ж</div>
+    <div class="mini-calendar-container">
+      <div class="mini-calendar-header">Тамыз 2025</div>
+      <table class="mini-calendar">
+        <thead>
+        <tr>
+          <th>ДС</th><th>СС</th><th>СР</th><th>БС</th><th>ЖМ</th><th>СБ</th><th>ЖС</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td>
+        </tr>
+        <tr>
+          <td>4</td><td>5</td><td>6</td>
+          <td class="marked-day">7</td>
+          <td>8</td><td>9</td><td>10</td>
+        </tr>
+        <tr>
+          <td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td>
+        </tr>
+        <tr>
+          <td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td>
+        </tr>
+        <tr>
+          <td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="noto-italic section-title">Той салтанатына дейін:</div>
+    <div class="outlined-text schedule"
+         style="background:#f6f3fa;padding:20px;border-radius:14px;display:inline-block;margin-bottom:18px;">
+      Фуршет 18:00 <br />
+      Құдаларды қарсы алу 19:00 - 19:30
+    </div>
+    <div class="outlined-text section">Мекен-жайымыз:</div>
+    <div class="outlined-text address">
+      Ақтөбе қаласы,<br />
+      Ағайынды Жұбановтар көшесі, 276/1<br />
+      <span class="noto-italic place">" Qurmet Hall "</span> мейрамханасы
+    </div>
+    <div style="margin: 18px 0">
+      <a href="https://go.2gis.com/RN5QW" target="_blank" class="map-link">
+        <img
+                src="https://play-lh.googleusercontent.com/55huczUZ05ruaVynURUNqzgTu0qXLF-SPQZKtE9KA6_BavI-g0NgXz1NR98n5xX33HwD"
+                alt="2GIS карта"
+                width="60"
+                height="60"
+        />
+        <span class="outlined-text address">2GIS</span>
+      </a>
+    </div>
+    <div class="outlined-text small" style="margin-top: 28px; margin-bottom: 12px">
+      Сіздің және қонақтардың ыңғайлылығы үшін балаларсыз келулеріңізді сұраймыз
+    </div>
+    <div class="outlined-text section" style="margin-top: 38px; margin-bottom: 18px">
+      ТОЙҒА КЕЛЕТІНІҢІЗДІ РАСТАУЫҢЫЗДЫ СҰРАЙМЫЗ
+    </div>
+    <form class="rsvp-form" id="rsvp-form">
+      <input
+              type="text"
+              id="name"
+              placeholder="Есім"
+              required
+      />
+      <div class="info-text">
+        Жұбыңызбен келсеңіз, жұбыңыздың есімін де жазыңыз!
+      </div>
+      <div class="radio-group">
+        <div>
+          <input type="radio" id="coming" name="answer" value="Келемін" required />
+          <label for="coming">Келемін</label>
+        </div>
+        <div>
+          <input type="radio" id="coming-with-spouse" name="answer" value="Жұбыммен келемін" />
+          <label for="coming-with-spouse">Жұбыммен келемін</label>
+        </div>
+        <div>
+          <input type="radio" id="not-coming" name="answer" value="Келе алмаймын" />
+          <label for="not-coming">Келе алмаймын</label>
+        </div>
+      </div>
+      <button type="submit">Жіберу</button>
+    </form>
+  </div>
+</div>
+<script>
+  // Музыка на обложке
+  document.addEventListener('DOMContentLoaded', function () {
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const music = document.getElementById('music');
+    let isPlaying = false;
+
+    playBtn.addEventListener('click', function () {
+      if (!isPlaying) {
+        music
+                .play()
+                .then(() => {
+                  playIcon.textContent = '❚❚';
+                  isPlaying = true;
+                })
+                .catch((e) => {
+                  alert('Браузер заблокировал автоматическое воспроизведение. Нажмите ещё раз!');
+                });
+      } else {
+        music.pause();
+        playIcon.textContent = '▶';
+        isPlaying = false;
+      }
+    });
+
+    music.addEventListener('ended', () => {
+      playIcon.textContent = '▶';
+      isPlaying = false;
+    });
+
+    // Form submission handler
+    document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const answer = document.querySelector('input[name="answer"]:checked')?.value;
+
+      if (name && answer) {
+        alert(`Рахмет, ${name}! Сіздің жауабыңыз: "${answer}" тіркелді.`);
+        this.reset();
+      }
+    });
+  });
+</script>
+</body>
+</html>
