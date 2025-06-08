@@ -232,6 +232,22 @@
       margin: 18px 0 7px 0;
     }
 
+    .hero-title {
+        font-family: 'Caveat';
+
+      position: absolute;
+      top: 630px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      padding: 0;
+      font-size: 1.3rem;
+      color: #b49a89;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      white-space: nowrap;   /* запрет переноса */
+      z-index: 3;
+    }
+
 
     /* Мини-календарь */
     .mini-calendar-container {
@@ -449,6 +465,7 @@
 
 <body style="font-family: 'Noto Sans', sans-serif; margin:0; padding:0;">
 <div class="hero">
+  <h1 class="hero-title">Merey Qyz Uzatu</h1>
   <img src="Kuz-Uzatu-1.JPG" alt="Мерей" class="bg-photo" />
   <div class="hero-overlay"></div>
   <button class="music-button" id="playBtn" title="Музыка">
@@ -456,6 +473,7 @@
   </button>
   <audio id="music" src="Kuz-Uzatu-music.mp3" preload="auto" loop></audio>
 </div>
+
 <div class="main-bg">
   <div class="content-section">
     <div class="outlined-text title" style="font-size: 1.9em">Құрметті</div>
