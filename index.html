@@ -323,7 +323,7 @@
 
     @media (max-width: 700px) {
       .hero-title {
-        top: 70vh;
+        top: calc(var(--vh) * 70);
         font-size: 1rem;
       }
       body{
@@ -336,7 +336,6 @@
       .outlined-text.address { font-size: 25px !important; }
       .outlined-text.schedule{ font-size: 22px !important; }
       .outlined-text.date { font-size: 21px !important; }
-      .outlined-text.small  { font-size: 25px !important; }
       .mini-calendar-header { font-size: 16px; }
       .mini-calendar        { font-size: 16px; }
     }
@@ -441,7 +440,7 @@
     /* Mobile tweaks */
     @media (max-width: 600px) {
       .hero-title {
-        top: 75vh;
+        top: calc(var(--vh) * 75);
         font-size: 1.2rem;
       }
       .rsvp-form {
