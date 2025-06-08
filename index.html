@@ -98,10 +98,33 @@
       margin-bottom: 56px;
       text-align: center;
       display: flex;
+      /*background: ;*/
       flex-direction: column;
       gap: 36px;
     }
 
+
+    /* Общие стили для левого и правого орнаментов */
+    .content-section::before,
+    .content-section::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 80px;            /* ширина орнамента */
+      height: 160px;          /* высота орнамента */
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      opacity: 0.3;           /* чтобы не мешать тексту */
+      z-index: 1;             /* позади самой карточки */
+    }
+
+    /* Левый орнамент */
+    .content-section::before {
+      left: -40px;            /* наполовину заступает за границу карточки */
+      background-image: url('ornament_left_colored.png');
+    }
     /* Caveat акцент */
     .caveat {
       font-family: 'Caveat', cursive !important;
