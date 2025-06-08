@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
   <style>
-    /* Сброс и базовые стили */
     html, body {
       margin: 0;
       padding: 0;
@@ -19,49 +18,35 @@
       min-height: 100%;
     }
     body {
-      /* ── Фон-орнаменты: левый, центральный, правый ── */
-      background-image:
-              url('ornament_left_colored.png'),
-              /*url('ornament_center_colored.png'),*/
-              url('ornament_right_colored.png');
-      background-repeat: no-repeat, no-repeat, no-repeat;
-      background-position:
-              left center,    /* левый узор */
-              center center,  /* центральный */
-              right center;   /* правый узор */
-      background-size:
-              auto 80%,       /* крайние по высоте 80% */
-              300px auto,     /* центральный — 300px по ширине */
-              auto 80%;
-      background-attachment: fixed, fixed, fixed;
+      min-height: 100vh;
+      width: 100vw;
       overflow-x: hidden;
     }
-
-    /* ── Карточка поверх узоров ── */
-    .content-section {
-      position: relative;
-      z-index: 2;
-      background: #fff;
-    }
-
-    /* ── Обложка ── */
+    /* Обложка */
     .hero {
       position: relative;
-      width: 100vw; height: 100vh;
+      width: 100vw;
+      height: 100vh;
+      min-height: 100vh;
       display: flex;
-      align-items: center; justify-content: center;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
     }
     .hero img.bg-photo {
-      position: absolute; top:0; left:0;
-      width:100%; height:100%;
+      width: 100vw;
+      height: 100vh;
       object-fit: cover;
-      filter: brightness(0.98);
+      object-position: center;
+      position: absolute;
+      top: 0; left: 0;
       z-index: 1;
+      filter: brightness(0.98);
     }
     .hero-overlay {
-      position: absolute; top:0; left:0;
-      width:100%; height:100%;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
       background: linear-gradient(
               to bottom,
               rgba(255,255,255,0.33) 8%,
@@ -71,207 +56,266 @@
     }
     .music-button {
       position: absolute;
-      bottom: 62px; left:50%;
+      bottom: 62px;
+      left: 50%;
       transform: translateX(-50%);
-      width:72px; height:72px;
+      width: 72px; height: 72px;
       background: rgba(255,255,255,0.93);
-      border-radius:50%;
-      box-shadow:0 2px 12px rgba(0,0,0,0.13);
-      display:flex; align-items:center; justify-content:center;
-      font-size:33px; color:#b29a90;
-      border:none; cursor:pointer;
-      z-index:10;
-      transition: background .2s ease;
+      border-radius: 50%;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 33px; color: #b29a90; cursor: pointer;
+      z-index: 10; border: none;
     }
-    .music-button:hover {
-      background: #efe1fa;
-    }
+    .music-button:hover { background: #efe1fa; }
 
-    /* ── Основная часть ── */
+    /* Основная часть */
     .main-bg {
       position: relative;
-      min-height: 100vh;
+      /* центральный фон */
+      background-image: url('image.jpg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+      /* фиксируем фон относительно окна */
+      background-attachment: fixed;
+      /*
+        если нужно, чтобы фон не перекрывал геро-блок,
+        можно указать padding-top равный высоте геро
+      */
       padding-top: 56px;
-      background: transparent;
     }
     .content-section {
+      position: relative;
+      z-index: 2;
+      /*background: url('Kuz-Uzatu-2.JPG') bottom center/contain no-repeat;*/
+      background-position: calc(50%) calc(100% - 10px);
       max-width: 650px;
-      margin: 0 auto 56px;
-      padding: 62px 32px;
+      margin: 0 auto;
       border-radius: 16px;
       box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 62px 32px 62px 32px;
+      margin-bottom: 56px;
+      text-align: center;
       display: flex;
       flex-direction: column;
       gap: 36px;
-      text-align: center;
     }
 
-    /* ── Типографика и мелкие блоки ── */
-    .outlined-text { /* для заголовков и секций */
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      color: #b29a89;
-      -webkit-text-stroke: .6px #998678;
-      letter-spacing: .2px;
+    /* Caveat акцент */
+    .caveat {
+      font-family: 'Caveat', cursive !important;
+      font-weight: 400 !important;
+      color: #a9897b !important;
+      letter-spacing: 0.5px;
     }
-    .outlined-text.title   { font-size: 34px; }
-    .outlined-text.section { font-size: 26px; }
-    .outlined-text.address { font-size: 22px; }
-    .outlined-text.schedule{ font-size: 19px; }
-    .outlined-text.date,
-    .outlined-text.time   { font-size: 28px; }
-    .outlined-text.small  { font-size: 18px; }
+    .caveat.host     { font-size: 1.5em; margin-top: 7px; }
+    .caveat.date     { font-size: 1.4em; margin: 8px 0 4px 0; }
+    .caveat.place    { font-size: 1.2em; }
+    .caveat.section-title { font-size: 1.15em; margin: 18px 0 7px 0; }
 
     .noto-italic {
-      font-family: 'Noto Serif', serif;
-      font-style: italic;
-      color: #b29a90;
-      font-size: 2.1em;
-      opacity: .97;
-      margin: 8px 0 14px;
+      font-family: 'Noto Serif', serif !important;
+      font-style: italic !important;
+      font-weight: 400 !important;
+      color: #b29a90 !important;
+      font-size: 2.1em;      /* адаптируй размер под нужный блок */
+      letter-spacing: 0.05em;
       line-height: 1.2;
+      display: block;
+      opacity: 0.97;
+      margin: 8px 0 14px 0;
     }
-    .noto-italic.place { font-size: 2.5em; }
-    .noto-italic.date  { font-size: 2.5em; }
+    .noto-italic.place {
+      font-size: 2.5em;
+      letter-spacing: 0.06em;
+      margin: 0 0 8px 0;
+    }
+    .noto-italic.date {
+      font-size: 2.5em;
+      margin: 10px 0 18px 0;
+    }
+    .noto-italic.thin {
+      font-size: 1.25em;
+      opacity: 0.93;
+      margin: 6px 0 6px 0;
+    }
+    .noto-italic.section-title {
+      font-size: 2.0em; /* можно подправить под нужный размер */
+      margin: 18px 0 7px 0;
+    }
 
+
+    /* Мини-календарь */
     .mini-calendar-container {
-      max-width: 340px; margin: 0 auto 18px;
+      max-width: 340px;
+      margin: 0 auto 18px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .mini-calendar-header {
       font-family: 'Playfair Display', serif;
-      font-size: 20px; font-weight: 700;
-      color: #b29a89; letter-spacing:1px;
-      margin-bottom:6px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #b49a89;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+      text-align: center;
     }
     .mini-calendar {
-      width:100%; border-collapse:collapse;
+      font-size: 20px;
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+      background: transparent;
     }
     .mini-calendar th,
     .mini-calendar td {
       font-family: 'Playfair Display', serif;
-      padding:3px 8px; text-align:center;
-      border:none;
-      position:relative;
+      font-weight: 400;
+      color: #222;
+      padding: 3px 8px;
+      text-align: center;
+      border: none;
+      font-size: 1em;
+      background: transparent;
+      position: relative;
+      line-height: 1.05;
+    }
+    .mini-calendar .marked-day {
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
     }
     .mini-calendar .marked-day::after {
-      content: '♡';
-      position:absolute; top:55%; left:50%;
-      transform:translate(-50%,-50%);
-      font-size:2em; color:#b29a89; opacity:.35;
-      z-index:-1;
+      content: "♡";
+      font-family: 'Playfair Display', serif;
+      font-size: 2em;
+      color: #b49a89;
+      position: absolute;
+      left: 50%;
+      top: 55%;
+      transform: translate(-50%, -50%);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -1;
     }
 
-    /* ── RSVP форма ── */
+    /* Outlined-text — для второстепенных блоков */
+    .outlined-text {
+      font-family: 'Playfair Display', serif !important;
+      font-weight: 700 !important;
+      color: #b49a89 !important;
+      -webkit-text-stroke: 0.6px #998678 !important;
+      text-stroke: 0.6px #998678 !important;
+      letter-spacing: 0.2px;
+    }
+    .outlined-text.section { font-size: 26px !important; }
+    .outlined-text.title   { font-size: 34px !important; }
+    .outlined-text.address { font-size: 22px !important; }
+    .outlined-text.schedule{ font-size: 19px !important; }
+    .outlined-text.date, .outlined-text.time { font-size: 28px !important; }
+    .outlined-text.small  { font-size: 18px !important; }
+
+    @media (max-width: 700px) {
+      .content-section { max-width: 99vw; padding: 9vw 2vw 8vw 2vw; margin-bottom: 0; }
+      .outlined-text.title   { font-size: 22px !important; }
+      .outlined-text.section { font-size: 19px !important; }
+      .outlined-text.address { font-size: 15px !important; }
+      .outlined-text.schedule{ font-size: 13px !important; }
+      .outlined-text.date, .outlined-text.time { font-size: 17px !important; }
+      .outlined-text.small  { font-size: 13px !important; }
+      .mini-calendar-header { font-size: 16px; }
+      .mini-calendar        { font-size: 16px; }
+    }
+    /* Кнопки и формы — стиль как на втором скрине */
     .rsvp-form {
       background: #fff;
       border-radius: 24px;
-      box-shadow: 0 4px 18px rgba(115,62,49,0.05);
-      max-width: 510px; margin: 24px auto 0;
-      padding: 32px 24px;
-      display: flex; flex-direction: column; gap: 19px;
+      box-shadow: 0 4px 18px rgba(115, 62, 49, 0.05);
+      max-width: 510px;
+      margin: 24px auto;
+      padding: 32px 24px 36px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 19px;
+      align-items: stretch;
     }
+
     .rsvp-form input[type="text"] {
-      width:100%; padding:20px;
-      border:3px solid #c6beb9; border-radius:20px;
-      font-family:'Playfair Display', serif;
-      font-size:1.38em; color:#432017;
-      transition: border-color .2s;
+      width: 100%;
+      padding: 20px 18px;
+      font-size: 1.38em;
+      border-radius: 20px;
+      border: 3px solid #c6beb9;
+      outline: none;
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      color: #432017;
+      background: #fff;
+      box-sizing: border-box;
+      transition: border-color 0.22s;
+      margin-bottom: 0;
     }
-    .rsvp-form input:focus {
-      border-color:#a9897b;
-      background:#fcf9f8;
+    .rsvp-form input[type="text"]:focus {
+      border-color: #a9897b;
+      background: #fcf9f8;
     }
+
     .info-text {
-      font-family:'Montserrat', sans-serif;
-      font-weight:600; color:#742820;
-      margin:0; letter-spacing:.01em;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 600;                /* можно и 500, если слишком жирно */
+      font-size: 1em;
+      color: #742820;                  /* точно как на скрине */
+      text-align: center;
+      margin: 8px 0 14px 0;
+      letter-spacing: 0.01em;
     }
+
     .radio-group {
-      display:flex; flex-direction:column; gap:10px;
+      margin: 0 0 14px 0;
     }
     .radio-group label {
-      font-family:'Montserrat', sans-serif;
-      font-size:1.26em; color:#742820;
-      cursor:pointer;
+      font-size: 1.26em;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #742820;
+      margin-left: 8px;
+      vertical-align: middle;
+      cursor: pointer;
     }
-    .radio-group input {
-      accent-color:#742820; margin-right:8px;
+    .radio-group div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
     }
-    .rsvp-form button {
-      background:#a9897b; color:#fff;
-      font-family:'Montserrat', sans-serif;
-      font-size:1.6em; font-weight:700;
-      border:none; border-radius:22px;
-      padding:15px 0; cursor:pointer;
-      box-shadow:0 2px 10px rgba(115,62,49,0.09);
-      transition: background .18s;
-    }
-    .rsvp-form button:hover {
-      background:#7d5b4b;
-    }
-
-    /* ── Адаптив ── */
-    @media (max-width: 768px) {
-      body {
-        /* снова задаём background-size */
-        background-size:
-                auto 60%,    /* левый */
-                auto 60%;    /* правый */
-        /* небольшой внутренний отступ, чтобы карточка не закрывала узоры */
-        padding: 0 10vw;
-      }
-
-      .content-section {
-        /* теперь карточка будет 80% от ширины экрана */
-        max-width: 80vw;
-        padding: 48px 4vw;
-        margin: 0 auto 56px;
-      }
-      .outlined-text.title   { font-size: 28px; }
-      .outlined-text.section { font-size: 20px; }
-      .outlined-text.address { font-size: 16px; }
-      .outlined-text.schedule{ font-size: 15px; }
-      .outlined-text.date,
-      .outlined-text.time   { font-size: 22px; }
-      .outlined-text.small  { font-size: 14px; }
-      .noto-italic { font-size: 1.6em; }
-      .mini-calendar-header { font-size: 16px; }
-      .mini-calendar th, .mini-calendar td { padding:2px 6px; }
-      .rsvp-form { padding:24px 16px; }
-      .rsvp-form input { font-size:1.1em; padding:16px; }
-      .info-text { font-size:.9em; }
-      .rsvp-form button { font-size:1.3em; padding:12px 0; }
+    .radio-group input[type="radio"] {
+      accent-color: #742820;
+      width: 22px;
+      height: 22px;
+      margin: 0 10px 0 0;
     }
 
-    @media (max-width: 480px) {
-      body {
-        background-size:
-                auto 50%,    /* левый */
-                auto 50%;    /* правый */
-        padding: 0 8vw;
-      }
-
-      .content-section {
-        max-width: 84vw;
-        padding: 32px 6vw;
-      }
-      .outlined-text.title   { font-size: 24px; }
-      .outlined-text.section { font-size: 18px; }
-      .outlined-text.address { font-size: 14px; }
-      .outlined-text.schedule{ font-size: 13px; }
-      .outlined-text.date,
-      .outlined-text.time   { font-size: 20px; }
-      .outlined-text.small  { font-size: 13px; }
-      .noto-italic { font-size: 1.4em; }
-      .mini-calendar-header { font-size: 14px; }
-      .rsvp-form { padding:20px 12px; }
-      .rsvp-form input { font-size:1em; padding:14px; }
-      .info-text { font-size:.8em; }
-      .radio-group label { font-size:1em; }
-      .rsvp-form button { font-size:1.2em; }
+    .rsvp-form button[type='submit'] {
+      background-color: #a9897b;
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.6em;
+      border: none;
+      border-radius: 22px;
+      padding: 15px 0;
+      margin-top: 18px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 10px rgba(115, 62, 49, 0.09);
+      transition: background 0.18s;
+      width: 100%;
+    }
+    .rsvp-form button[type='submit']:hover {
+      background: #7d5b4b;
     }
   </style>
-
 </head>
 <body>
 <!-- 1. Обложка -->
