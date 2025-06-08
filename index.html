@@ -303,7 +303,7 @@
     .outlined-text.address { font-size: 22px !important; }
     .outlined-text.schedule{ font-size: 19px !important; }
     .outlined-text.date, .outlined-text.time { font-size: 28px !important; }
-    .outlined-text.small  { font-size: 18px !important; }
+    .outlined-text.small  { font-size: 100px !important; }
 
     @media (max-width: 700px) {
       body{
@@ -311,7 +311,7 @@
 
       }
       .content-section { max-width: 99vw; padding: 9vw 2vw 8vw 2vw; margin-bottom: 0; }
-      .outlined-text.title   { font-size: 22px !important; }
+      .outlined-text.title   { font-size: 34px !important; }
       .outlined-text.section { font-size: 19px !important; }
       .outlined-text.address { font-size: 15px !important; }
       .outlined-text.schedule{ font-size: 13px !important; }
@@ -327,85 +327,107 @@
       box-shadow: 0 4px 18px rgba(115, 62, 49, 0.05);
       max-width: 510px;
       margin: 24px auto;
-      padding: 32px 24px 36px 24px;
+      padding: 24px 16px;        /* tightened up */
       display: flex;
       flex-direction: column;
-      gap: 19px;
+      gap: 16px;                 /* a touch less vertical gap */
       align-items: stretch;
     }
 
     .rsvp-form input[type="text"] {
       width: 100%;
-      padding: 20px 18px;
-      font-size: 1.38em;
+      padding: 14px 16px;        /* more balanced padding */
+      font-size: 0.7em;            /* matches body copy */
       border-radius: 20px;
-      border: 3px solid #c6beb9;
+      border: 2px solid #c6beb9; /* slightly thinner border */
       outline: none;
       font-family: 'Playfair Display', serif;
-      font-weight: 400;
       color: #432017;
       background: #fff;
       box-sizing: border-box;
       transition: border-color 0.22s;
       margin-bottom: 0;
     }
+
     .rsvp-form input[type="text"]:focus {
       border-color: #a9897b;
       background: #fcf9f8;
     }
 
     .info-text {
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 600;                /* можно и 500, если слишком жирно */
-      font-size: 1em;
-      color: #742820;                  /* точно как на скрине */
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.6em;         /* a bit smaller so it doesn’t compete */
+      color: #742820;
       text-align: center;
-      margin: 8px 0 14px 0;
+      margin: 6px 0 12px;
       letter-spacing: 0.01em;
     }
 
     .radio-group {
-      margin: 0 0 14px 0;
+      margin: 0 0 12px;
     }
+
     .radio-group label {
-      font-size: 1.26em;
-      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 0.6em;             /* match the rest of the form text */
+      font-family: 'Montserrat', sans-serif;
       color: #742820;
-      margin-left: 8px;
-      vertical-align: middle;
       cursor: pointer;
     }
+
     .radio-group div {
       display: flex;
       align-items: center;
-      margin-bottom: 10px;
-    }
-    .radio-group input[type="radio"] {
-      accent-color: #742820;
-      width: 22px;
-      height: 22px;
-      margin: 0 10px 0 0;
+      margin-bottom: 8px;
     }
 
-    .rsvp-form button[type='submit'] {
+    .radio-group input[type="radio"] {
+      accent-color: #742820;
+      width: 18px;                /* slightly smaller circles */
+      height: 18px;
+      margin-right: 8px;          /* tighten up the gap */
+    }
+
+
+    .rsvp-form button[type="submit"] {
       background-color: #a9897b;
       color: #fff;
-      font-family: 'Montserrat', Arial, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      font-size: 1.6em;
+      font-size: 1.4em;          /* more in-line with other headings */
       border: none;
       border-radius: 22px;
-      padding: 15px 0;
-      margin-top: 18px;
+      padding: 12px 0;           /* a little less vertical height */
       cursor: pointer;
       letter-spacing: 1px;
       box-shadow: 0 2px 10px rgba(115, 62, 49, 0.09);
       transition: background 0.18s;
       width: 100%;
     }
-    .rsvp-form button[type='submit']:hover {
+
+    .rsvp-form button[type="submit"]:hover {
       background: #7d5b4b;
     }
+
+    /* Mobile tweaks */
+    @media (max-width: 600px) {
+      .rsvp-form {
+        padding: 20px 12px;
+        gap: 12px;
+      }
+      .rsvp-form input[type="text"] {
+        padding: 12px 14px;
+        font-size: 0.95em;
+      }
+      .radio-group label {
+        font-size: 0.6em;
+      }
+      .rsvp-form button[type="submit"] {
+        font-size: 1.2em;
+        padding: 10px 0;
+      }
+    }
+
   </style>
 <!-- 1. Обложка -->
 
@@ -420,17 +442,17 @@
 </div>
 <div class="main-bg">
   <div class="content-section">
-    <div class="outlined-text title">Құрметті</div>
+    <div class="outlined-text title" style="font-size: 1.9em">Құрметті</div>
     <div class="outlined-text section" id="invitation-text">
       ағайын – туыс, бауырлар,<br/>
       құда – жекжат, нағашы-жиен, әріптестер,<br/>
       дос – жарандар және көршілер!<br/>
       сіздерді қызымыз<br/>
-      <span class="noto-italic" style="font-size:1.2em;">Мерейдің</span><br/>
+      <span class="noto-italic" style="font-size:1.9em; margin-top: 15px;">Мерейдің</span><br/>
       ұзату тойының қадірлі қонағы болуға шақырамыз!
     </div>
     <div class="outlined-text section">Той иелері:</div>
-    <div class="noto-italic">Қуаныш – Анжелика</div>
+    <div class="noto-italic" style="font-size: 1.4em">Қуаныш – Анжелика</div>
     <div class="outlined-text section">Той салтанаты:</div>
     <div class="noto-italic date">7 тамыз 2025 ж</div>
 
@@ -454,14 +476,20 @@
       <span class="noto-italic place">“ Qurmet Hall ”</span> мейрамханасы
     </div>
 
-    <div style="margin:18px 0">
-      <a href="https://go.2gis.com/RN5QW" target="_blank"
-         style="text-decoration:none; color:#b29a90">
-        <img src="…2gis-icon.png" alt="2GIS карта" width="60"
-             style="vertical-align:middle; border-radius:10px"/>
-        <span class="outlined-text address" style="vertical-align:middle">
-          2GIS
-        </span>
+    <div style="margin: 18px 0">
+      <a
+              href="https://go.2gis.com/RN5QW"
+              target="_blank"
+              style="text-decoration: none; color: #b29a90"
+      >
+        <img
+                src="https://play-lh.googleusercontent.com/55huczUZ05ruaVynURUNqzgTu0qXLF-SPQZKtE9KA6_BavI-g0NgXz1NR98n5xX33HwD"
+                alt="2GIS карта"
+                width="60"
+                style="vertical-align: middle; border-radius: 10px"
+        />
+        <span class="outlined-text address" style="vertical-align: middle"
+        >2GIS</span>
       </a>
     </div>
 
@@ -479,7 +507,7 @@
         Жұбыңызбен келсеңіз, жұбыңыздың есімін де жазыңыз!
       </div>
       <div class="radio-group" style="text-align:left">
-        <label><input type="radio" name="answer" value="Келемін" required/> Келемін</label>
+        <label><input type="radio" name="answer" value="Келемін" style="font-size: 0.2em" required/> Келемін</label>
         <label><input type="radio" name="answer" value="Жұбыммен келемін"/> Жұбыммен келемін</label>
         <label><input type="radio" name="answer" value="Келе алмаймын"/> Келе алмаймын</label>
       </div>
