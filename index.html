@@ -5,23 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Мерейдің қыз ұзатуы</title>
   <!-- Playfair Display (основной), Caveat (каллиграфия) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+</head>
   <style>
+
+    .names-main {
+      font-family: 'Marck Script', cursive;
+      font-size: 3.5rem;            /* подберите под ваш макет */
+      color: #8B0000;               /* насыщенный бордовый */
+      line-height: 1;
+      margin: 0.5em 0;
+    }
+    /* РУКОПИСНЫЙ ПАРАГРАФ */
+    /*#invitation-text {*/
+    /*  font-family: 'Caveat', cursive;*/
+    /*  font-size: 1.6rem;*/
+    /*  line-height: 1.4;*/
+    /*  color: #111;*/
+    /*  margin: 0.5em 0;*/
+    /*}*/
+     Адаптив: чуть уменьшаем на мобилках
+    /*@media (max-width: 600px) {*/
+    /*  .names-main { font-size: 2.5rem; }*/
+    /*  .invitation-text { font-size: 1.3rem; }*/
+    /*}*/
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+    body {
+      /*font-family: 'Noto Sans', sans-serif;*/
+      background: #fff;
+      color: #111;
+      margin:0; padding:0;
+    }
+
+    /* Основные заголовки и подчеркнутый текст */
+    h1, .outlined-text {
+      font-family: 'Caveat', cursive;
+      font-size: 1.6rem;
+
+      line-height: 1.4;
+      color: #b29a90;
+      margin: 0.5em 0;    }
+
+    /* Кнопки, подписи, UI */
+    /*button, .radio-group label, .mini-calendar-header, .info-text {*/
+    /*  font-family: 'Rubik', sans-serif;*/
+    /*}*/
+
+    /* Имена молодожёнов */
+    .names {
+      font-family: 'Great Vibes', cursive;
+    }
+
+    /* Динамический гость и приглашение */
+    #guest-name, .invitation-text {
+      font-family: 'Caveat', cursive;
+    }
+
+    /* Второстепенные акценты */
+    .names-lobster {
+      font-family: 'Lobster', cursive;
+    }
     html, body {
       margin: 0;
       padding: 0;
       font-family: 'Playfair Display', serif;
       background: #fff;
-      color: #111;
+      font-size: 33px; color: #b29a90; cursor: pointer;
       min-height: 100%;
     }
     body {
-      min-height: 100vh;
-      width: 100vw;
-      overflow-x: hidden;
+      background-image: url("image.jpg");
+      background-repeat: no-repeat;
+      background-position: center center;
+      /* масштаб по высоте окна, чтобы не растягивалась ширина непропорционально */
+      background-size: auto 80%;
+      /* фиксируем за движением страницы */
+      background-attachment: fixed;
     }
+
     /* Обложка */
     .hero {
       position: relative;
@@ -123,7 +187,7 @@
     /* Левый орнамент */
     .content-section::before {
       left: -40px;            /* наполовину заступает за границу карточки */
-      background-image: url('ornament_left_colored.png');
+      /*background-image: url('ornament_left_colored.png');*/
     }
     /* Caveat акцент */
     .caveat {
@@ -138,11 +202,11 @@
     .caveat.section-title { font-size: 1.15em; margin: 18px 0 7px 0; }
 
     .noto-italic {
-      font-family: 'Noto Serif', serif !important;
+      font-family: 'Caveat', cursive;
       font-style: italic !important;
-      font-weight: 400 !important;
+      font-weight: 300 !important;
       color: #b29a90 !important;
-      font-size: 2.1em;      /* адаптируй размер под нужный блок */
+      font-size: 0.8em;      /* адаптируй размер под нужный блок */
       letter-spacing: 0.05em;
       line-height: 1.2;
       display: block;
@@ -155,7 +219,7 @@
       margin: 0 0 8px 0;
     }
     .noto-italic.date {
-      font-size: 2.5em;
+      font-size: 0.8em;
       margin: 10px 0 18px 0;
     }
     .noto-italic.thin {
@@ -227,12 +291,12 @@
 
     /* Outlined-text — для второстепенных блоков */
     .outlined-text {
-      font-family: 'Playfair Display', serif !important;
-      font-weight: 700 !important;
-      color: #b49a89 !important;
-      -webkit-text-stroke: 0.6px #998678 !important;
-      text-stroke: 0.6px #998678 !important;
-      letter-spacing: 0.2px;
+      /*font-family: 'Playfair Display', serif !important;*/
+      /*font-weight: 700 !important;*/
+      /*color: #b49a89 !important;*/
+      /*-webkit-text-stroke: 0.6px #998678 !important;*/
+      /*text-stroke: 0.6px #998678 !important;*/
+      /*letter-spacing: 0.2px;*/
     }
     .outlined-text.section { font-size: 26px !important; }
     .outlined-text.title   { font-size: 34px !important; }
@@ -242,6 +306,10 @@
     .outlined-text.small  { font-size: 18px !important; }
 
     @media (max-width: 700px) {
+      body{
+        background-size: auto 60%;
+
+      }
       .content-section { max-width: 99vw; padding: 9vw 2vw 8vw 2vw; margin-bottom: 0; }
       .outlined-text.title   { font-size: 22px !important; }
       .outlined-text.section { font-size: 19px !important; }
@@ -339,9 +407,9 @@
       background: #7d5b4b;
     }
   </style>
-</head>
-<body>
 <!-- 1. Обложка -->
+
+<body style="font-family: 'Noto Sans', sans-serif; margin:0; padding:0;">
 <div class="hero">
   <img src="Kuz-Uzatu-1.JPG" alt="Мерей" class="bg-photo" />
   <div class="hero-overlay"></div>
@@ -350,122 +418,76 @@
   </button>
   <audio id="music" src="Kuz-Uzatu-music.mp3" preload="auto" loop></audio>
 </div>
-
-<!-- 2. Основной блок -->
 <div class="main-bg">
   <div class="content-section">
     <div class="outlined-text title">Құрметті</div>
-    <div class="outlined-text section">
-      ағайын - туыс, бауырлар,<br />
-      құда - жекжат, нағашы-жиен, әріптестер,<br />
-      дос - жарандар және көршілер! <br />
-      сіздерді қызымыз<br />
-      <span class="noto-italic" style="font-size:1.2em;">Мерейдің</span> <br />
-      ұзату тойының<br />
-      қадірлі қонағы болуға шақырамыз!
+    <div class="outlined-text section" id="invitation-text">
+      ағайын – туыс, бауырлар,<br/>
+      құда – жекжат, нағашы-жиен, әріптестер,<br/>
+      дос – жарандар және көршілер!<br/>
+      сіздерді қызымыз<br/>
+      <span class="noto-italic" style="font-size:1.2em;">Мерейдің</span><br/>
+      ұзату тойының қадірлі қонағы болуға шақырамыз!
     </div>
     <div class="outlined-text section">Той иелері:</div>
-    <div class="noto-italic">Қуаныш - Анжелика</div>
+    <div class="noto-italic">Қуаныш – Анжелика</div>
     <div class="outlined-text section">Той салтанаты:</div>
-    <div class="noto-italic date">7 тамыз 2025ж</div>
+    <div class="noto-italic date">7 тамыз 2025 ж</div>
+
     <div class="mini-calendar-container">
       <div class="mini-calendar-header">Тамыз 2025</div>
       <table class="mini-calendar">
-        <thead>
-        <tr>
-          <th>ДС</th><th>СС</th><th>СР</th><th>БС</th><th>ЖМ</th><th>СБ</th><th>ЖС</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td>
-        </tr>
-        <tr>
-          <td>4</td><td>5</td><td>6</td>
-          <td class="marked-day">7</td>
-          <td>8</td><td>9</td><td>10</td>
-        </tr>
-        <tr>
-          <td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td>
-        </tr>
-        <tr>
-          <td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td>
-        </tr>
-        <tr>
-          <td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td>
-        </tr>
-        </tbody>
+        <!-- … -->
       </table>
     </div>
-    <div class="noto-italic section-title">Той салтанатына дейін:</div>
+
     <div class="outlined-text schedule"
          style="background:#f6f3fa;padding:20px;border-radius:14px;display:inline-block;margin-bottom:18px;">
-      Фуршет 18:00 <br />
-      Құдаларды қарсы алу 19:00 - 19:30
+      Фуршет 18:00<br/>
+      Құдаларды қарсы алу 19:00 – 19:30
     </div>
+
     <div class="outlined-text section">Мекен-жайымыз:</div>
     <div class="outlined-text address">
-      Ақтөбе қаласы,<br />
-      Ағайынды Жұбановтар көшесі, 276/1<br />
+      Ақтөбе қаласы,<br/>
+      Ағайынды Жұбановтар көшесі, 276/1<br/>
       <span class="noto-italic place">“ Qurmet Hall ”</span> мейрамханасы
     </div>
-    <div style="margin: 18px 0">
-      <a
-              href="https://go.2gis.com/RN5QW"
-              target="_blank"
-              style="text-decoration: none; color: #b29a90"
-      >
-        <img
-                src="https://play-lh.googleusercontent.com/55huczUZ05ruaVynURUNqzgTu0qXLF-SPQZKtE9KA6_BavI-g0NgXz1NR98n5xX33HwD"
-                alt="2GIS карта"
-                width="60"
-                style="vertical-align: middle; border-radius: 10px"
-        />
-        <span class="outlined-text address" style="vertical-align: middle"
-        >2GIS</span>
+
+    <div style="margin:18px 0">
+      <a href="https://go.2gis.com/RN5QW" target="_blank"
+         style="text-decoration:none; color:#b29a90">
+        <img src="…2gis-icon.png" alt="2GIS карта" width="60"
+             style="vertical-align:middle; border-radius:10px"/>
+        <span class="outlined-text address" style="vertical-align:middle">
+          2GIS
+        </span>
       </a>
     </div>
-    <div class="outlined-text small" style="margin-top: 28px; margin-bottom: 12px">
+
+    <div class="outlined-text small" style="margin:28px 0 12px">
       Сіздің және қонақтардың ыңғайлылығы үшін балаларсыз келулеріңізді сұраймыз
     </div>
-    <div class="outlined-text section" style="margin-top: 38px; margin-bottom: 18px">
+
+    <div class="outlined-text section" style="margin:38px 0 18px">
       ТОЙҒА КЕЛЕТІНІҢІЗДІ РАСТАУЫҢЫЗДЫ СҰРАЙМЫЗ
     </div>
+
     <form class="rsvp-form" id="rsvp-form">
-      <input
-              type="text"
-              id="name"
-              placeholder="Есім"
-              style="min-width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 1px solid #a7a7a7; box-sizing: border-box;"
-              required
-      />
-      <div class="info-text" style="text-align: start">
+      <input type="text" id="name" placeholder="Есім" required />
+      <div class="info-text" style="text-align:left">
         Жұбыңызбен келсеңіз, жұбыңыздың есімін де жазыңыз!
       </div>
-      <div class="radio-group" style="padding: 5px 0; text-align: start">
-        <div style="padding-bottom: 5px">
-          <label>
-            <input type="radio" name="answer" value="Келемін" required />
-            Келемін
-          </label>
-        </div>
-        <div style="padding-bottom: 5px">
-          <label>
-            <input type="radio" name="answer" value="Жұбыммен келемін" />
-            Жұбыммен келемін
-          </label>
-        </div>
-        <div style="padding-bottom: 5px">
-          <label>
-            <input type="radio" name="answer" value="Келе алмаймын" />
-            Келе алмаймын
-          </label>
-        </div>
+      <div class="radio-group" style="text-align:left">
+        <label><input type="radio" name="answer" value="Келемін" required/> Келемін</label>
+        <label><input type="radio" name="answer" value="Жұбыммен келемін"/> Жұбыммен келемін</label>
+        <label><input type="radio" name="answer" value="Келе алмаймын"/> Келе алмаймын</label>
       </div>
       <button type="submit">Жіберу</button>
     </form>
   </div>
 </div>
+
 <script>
   // Музыка на обложке
   document.addEventListener('DOMContentLoaded', function () {
@@ -473,27 +495,14 @@
     const playIcon = document.getElementById('playIcon');
     const music = document.getElementById('music');
     let isPlaying = false;
-    playBtn.addEventListener('click', function () {
+    playBtn.addEventListener('click', () => {
       if (!isPlaying) {
-        music
-                .play()
-                .then(() => {
-                  playIcon.textContent = '❚❚';
-                  isPlaying = true;
-                })
-                .catch((e) => {
-                  alert('Браузер заблокировал автоматическое воспроизведение. Нажмите ещё раз!');
-                });
+        music.play().then(() => { playIcon.textContent = '❚❚'; isPlaying = true; });
       } else {
-        music.pause();
-        playIcon.textContent = '▶';
-        isPlaying = false;
+        music.pause(); playIcon.textContent = '▶'; isPlaying = false;
       }
     });
-    music.addEventListener('ended', () => {
-      playIcon.textContent = '▶';
-      isPlaying = false;
-    });
+    music.addEventListener('ended', () => { playIcon.textContent = '▶'; isPlaying = false; });
   });
 </script>
 </body>
